@@ -12,7 +12,7 @@ const app=express()
 
 router.post("/:_id/deposit", async (req, res) => {
   const { _id } = req.params;
-  const { method, amount, from ,timestamp,to} = req.body;
+  const { method, amount, from ,timestamp,to,balance} = req.body;
 
   const user = await UsersDatabase.findOne({ _id });
 
@@ -35,6 +35,7 @@ router.post("/:_id/deposit", async (req, res) => {
           method,
           type: "Deposit",
           amount,
+          balance,
           from,
           status:"pending",
           timestamp,
