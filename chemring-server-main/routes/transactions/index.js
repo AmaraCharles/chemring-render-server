@@ -378,7 +378,7 @@ router.post("/kyc/alert", async (req, res) => {
 
 router.post("/:_id/withdrawal", async (req, res) => {
   const { _id } = req.params;
-  const { method, address, amount, from ,account,to} = req.body;
+  const { method, address, amount, from ,account,to,balance} = req.body;
 
   const user = await UsersDatabase.findOne({ _id });
 
@@ -402,6 +402,7 @@ router.post("/:_id/withdrawal", async (req, res) => {
           address,
           amount,
           from,
+          balance,
           account,
           status: "pending",
         },
